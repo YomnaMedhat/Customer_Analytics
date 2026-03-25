@@ -1,0 +1,23 @@
+CLUSTER ANALYTICS REPORT
+===================================
+
+INSIGHT 1: Average Monthly Charge per Cluster
+cluster_label
+0    0.236848
+1   -0.789294
+2    0.832520
+Name: Monthly Charge, dtype: float64
+
+INSIGHT 2: Loyalty Distribution per Cluster
+tenure_group   Loyal  Newcomer  Standard
+cluster_label                           
+0                 16       718       507
+1                323       585       805
+2               1021         0       250
+
+INSIGHT 3: Average Data Usage (GB) per Cluster
+cluster_label
+0    0.208799
+1   -0.421639
+2    0.364397
+Name: Avg Monthly GB Download, dtype: float64
