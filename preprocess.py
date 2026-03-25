@@ -25,7 +25,7 @@ df['tenure_group'] = pd.cut(df['Tenure in Months'],
 # (EXCEPT customerID as it has numbers but is not a numeric feature)
 label_encoders = {}
 for col in df.select_dtypes(include=['object']).columns:
-    if col != 'customerID' and col != 'tenure_group':
+    if col != 'Customer ID' and col != 'tenure_group':
         c = LabelEncoder()
         df[col] = c.fit_transform(df[col])
         label_encoders[col] = c
@@ -36,7 +36,6 @@ numeric_cols = df.select_dtypes(include=['int64', 'float64']).columns
 
 df[numeric_cols] = scaler.fit_transform(df[numeric_cols])
 
-df.to_csv("data_preprocessed.csv", index=False)
 
 # PCA
 
@@ -63,3 +62,4 @@ df['pca_1'] = pca_result[:, 0]
 df['pca_2'] = pca_result[:, 1]
 
 df.to_csv("results/data_preprocessed.csv", index=False)
+df.to_csv("data_preprocessed.csv", index=False)
