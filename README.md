@@ -42,13 +42,13 @@ chmod +x summary.sh
 
 ##  Execution Flow
 
-1. **Data Ingestion (ingest.py)**
+1. **Data Ingestion (`ingest.py`)**
 
    * Accepts a dataset file path as a **command-line argument** (sys.argv[1]).
    * In this project, the dataset is first downloaded from Hugging Face.
    * `ingest.py` then loads the dataset from the given path and saves a copy as `data_raw.csv` for further processing.
 
-2. **Preprocessing (preprocess.py)**
+2. **Preprocessing (`preprocess.py`)**
    
    * Handles missing values and duplicates
    * Encodes and scales features
@@ -59,11 +59,11 @@ chmod +x summary.sh
      * Standard
      * Loyal
 
-3. **Manual PCA (analytics.py)**
+3. **Manual PCA (`analytics.py`)**
 
    * Reduces **37 features --> 2 principal components** for dimensionality reduction and visualization.
 
-4. **Clustering (cluster.py)**
+4. **Clustering (`cluster.py`)**
 
    * Applies **K-Means Clustering**
    * Identifies 3 customer segments:
@@ -76,7 +76,7 @@ chmod +x summary.sh
 
    * Generates `.png` plots for clusters and PCA
 
-6. **Summary (summary.sh)**
+6. **Summary (`summary.sh`)**
 
    * Copies `.csv`, `.txt`, `.png` to host
    * Stops and removes container
@@ -113,11 +113,11 @@ customer-analytics/results/
 
 ### CSV Output Example
 
-# CLUSTRING
+### CLUSTRING
 
 <img width="1012" height="840" alt="image" src="https://github.com/user-attachments/assets/eaaf88c0-a3d1-40ba-9f7c-1ff6eb31503f" />
 
-# PROCESSING
+### PROCESSING
 
 <img width="1898" height="858" alt="image" src="https://github.com/user-attachments/assets/2d80f820-9428-4824-b3dc-e9142dedde0a" />
 
