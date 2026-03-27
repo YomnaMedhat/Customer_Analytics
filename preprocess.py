@@ -1,7 +1,12 @@
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 import numpy as np
+import subprocess
+import sys
+import os
 
+
+input_path = sys.argv[1]
 
 df = pd.read_csv("data_raw.csv")
 
@@ -61,5 +66,9 @@ pca_result = np.dot(X, top_2_vectors)
 df['pca_1'] = pca_result[:, 0]
 df['pca_2'] = pca_result[:, 1]
 
-df.to_csv("results/data_preprocessed.csv", index=False)
-df.to_csv("data_preprocessed.csv", index=False)
+os.makedirs("results", exist_ok=True)
+
+output_path = "results/data_preprocessed.csv"
+df.to_csv(output_path, index=False)
+
+subprocess.run(["python", "analytics.py", output_path])

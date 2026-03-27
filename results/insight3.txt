@@ -1,0 +1,1 @@
+Average Churn Score: 1.3454063635694205e-17
