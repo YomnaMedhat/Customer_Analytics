@@ -1,36 +1,30 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import sys
+import subprocess
 
-df = pd.read_csv("results/data_clustered.csv")
+input_path = sys.argv[1]
+df = pd.read_csv(input_path)
 
 sns.set(style="whitegrid")
-plt.figure(figsize=(15, 10))
+plt.figure(figsize=(12, 8))
 
-# PLOT 1: HISTOGRAM (Distribution of Monthly Charges) 
+# Histogram
 plt.subplot(2, 2, 1)
-sns.histplot(df['Monthly Charge'], kde=True, color='skyblue')
-plt.title('Distribution of Monthly Charges')
+sns.histplot(df['Monthly Charge'], kde=True)
+plt.title('Monthly Charge Distribution')
 
-# PLOT 2: HEATMAP (Correlation of numeric features) 
+# Heatmap
 plt.subplot(2, 2, 2)
-numeric_cols = df.select_dtypes(include=['number']).columns
-corr = df[numeric_cols].corr()
-sns.heatmap(corr, cmap='coolwarm', annot=False)
-plt.title('Feature Correlation Heatmap')
+corr = df.select_dtypes(include='number').corr()
+sns.heatmap(corr)
 
-# PLOT 3: SCATTER PLOT (The PCA Clusters) 
+# PCA Scatter
 plt.subplot(2, 2, 3)
-sns.scatterplot(data=df, x='pca_1', y='pca_2', hue='cluster_label', palette='viridis')
-plt.title('Customer Clusters (PCA Space)')
-
-# PLOT 4: BAR CHART (Tenure Bins vs Clusters) 
-plt.subplot(2, 2, 4)
-sns.countplot(data=df, x='cluster_label', hue='tenure_group')
-plt.title('Tenure Bins per Cluster')
+sns.scatterplot(data=df, x='pca_1', y='pca_2')
 
 plt.tight_layout()
-plt.savefig("results/analysis_results.png") 
-plt.show()
+plt.savefig("results/summary_plot.png")
 
-print("Visualization complete! Check 'analysis_results.png' for your report.")
+subprocess.run(["python", "cluster.py", input_path])

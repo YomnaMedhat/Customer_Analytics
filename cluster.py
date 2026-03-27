@@ -1,16 +1,19 @@
 import pandas as pd
 from sklearn.cluster import KMeans
+import sys
 
-df = pd.read_csv("results/data_preprocessed.csv")
+input_path = sys.argv[1]
+df = pd.read_csv(input_path)
 
 X = df[['pca_1', 'pca_2']]
 
 kmeans = KMeans(n_clusters=3, random_state=42)
-df['cluster_label'] = kmeans.fit_predict(X)
+df['cluster'] = kmeans.fit_predict(X)
 
-cols_to_save = [col for col in ['Customer ID', 'cluster_label'] if col in df.columns]
-cluster_output = df[cols_to_save]
+counts = df['cluster'].value_counts()
 
-cluster_output.to_csv("results/clusters.txt", sep='\t', index=False)
+with open("results/clusters.txt", "w") as f:
+    for cluster, count in counts.items():
+        f.write(f"Cluster {cluster}: {count} samples\n")
 
-df.to_csv("results/data_clustered.csv", index=False) 
+df.to_csv("results/data_clustered.csv", index=False)
