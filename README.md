@@ -134,7 +134,7 @@ customer-analytics/results/
 
 ### Visualization
 
-image" src="https://github.com/user-attachments/assets/899386f6-1ea7-4f36-b7ce-8d3f1c5c4f33" />
+<img width="1200" height="800" alt="summary_plot" src="https://github.com/user-attachments/assets/f561a781-6057-4c0e-974e-a86da2262862" />
 
 ---
 
