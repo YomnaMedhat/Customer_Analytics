@@ -134,14 +134,14 @@ customer-analytics/results/
 
 ### Visualization
 
-<img width="1050" height="701" alt="image" src="https://github.com/user-attachments/assets/899386f6-1ea7-4f36-b7ce-8d3f1c5c4f33" />
+image" src="https://github.com/user-attachments/assets/899386f6-1ea7-4f36-b7ce-8d3f1c5c4f33" />
 
 ---
 
 ##  Requirements
 
 * Docker installed
-* Python 3.11-slim (inside container)
+* Python 3.11-slim
 
 Libraries used:
 
