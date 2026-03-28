@@ -40,6 +40,15 @@ chmod +x summary.sh
 
 ---
 
+### Run from Docker Hub
+
+docker pull yomna124/telecom_analysis:latest
+docker run --name telecom_container yomna124/telecom_analysis:latest
+
+🔗 Docker Hub Link: https://hub.docker.com/r/yomna124/telecom_analysis
+
+---
+
 ##  Execution Flow
 
 1. **Data Ingestion (`ingest.py`)**
