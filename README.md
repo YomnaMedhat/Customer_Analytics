@@ -42,6 +42,7 @@ chmod +x summary.sh
 
 ### Run from Docker Hub
 
+```bash
 docker pull yomna124/telecom_analysis:latest
 docker run --name telecom_container yomna124/telecom_analysis:latest
 
