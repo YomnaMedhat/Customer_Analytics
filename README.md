@@ -9,44 +9,54 @@ The pipeline processes telecom customer data to generate insights through ingest
 
 ##  Docker Build & Run Commands
 
-### 1. Build Docker Image
+### Option A — Build Locally
 
+**1. Build Docker Image**
 ```bash
 docker build -t telecom_analysis .
 ```
 
-### 2. Run Container
-
+**2. Run Container**
 ```bash
-docker run -it telecom_analysis
+docker run -it --name my_container telecom_analysis
 ```
 
-### 3. Run Pipeline (if not auto-run)
+### Option B — Pull from Docker Hub
 
+**1. Pull Image**
 ```bash
-python ingest.py
-python preprocess.py
-python cluster.py
-python analytics.py
-python visualize.py
+docker pull yomna124/telecom_analysis:latest
 ```
 
-### 4. Run Summary Script
-
+**2. Run Container**
 ```bash
-chmod +x summary.sh
-./summary.sh
+docker run -it --name my_container yomna124/telecom_analysis:latest
 ```
+
+🔗 Docker Hub Link: https://hub.docker.com/r/yomna124/telecom_analysis
+
+🔗 GitHub Repository: https://github.com/yomna124/Customer_Analytics
 
 ---
 
-### Run from Docker Hub
+### 3. Run the Pipeline (inside the container)
+
+Only one command is needed — each script automatically calls the next:
+```bash
+python ingest.py telco_customer_churn.csv
+```
+
+### 4. Run Summary Script (inside the container)
 
 ```bash
-docker pull yomna124/telecom_analysis:latest
-docker run -it telecom_analysis
+bash summary.sh
 ```
-🔗 Docker Hub Link: https://hub.docker.com/r/yomna124/telecom_analysis
+
+### 5. Exit the container
+
+```bash
+exit
+```
 
 ---
 
@@ -69,9 +79,12 @@ docker run -it telecom_analysis
      * Standard
      * Loyal
 
-3. **Manual PCA (`analytics.py`)**
+3. **Analytics (`analytics.py`)**
 
-   * Reduces **37 features --> 2 principal components** for dimensionality reduction and visualization.
+   * Generates three textual insights from the preprocessed data:
+     * Average Monthly Charge
+     * Average Tenure in Months
+     * Average Churn Score
 
 4. **Clustering (`cluster.py`)**
 
@@ -107,13 +120,13 @@ customer-analytics/results/
 
 ### Generated Files:
 
-* clusters.csv
-* pca_components.csv
-* tenure_binned.csv
-* summary.txt
-* Visualization images (.png)
-
----
+* `data_preprocessed.csv` — cleaned, encoded, scaled, and PCA-reduced dataset
+* `data_clustered.csv` — preprocessed data with cluster labels added
+* `clusters.txt` — number of samples per K-Means cluster
+* `insight1.txt` — average monthly charge
+* `insight2.txt` — average tenure in months
+* `insight3.txt` — average churn score
+* `summary_plot.png` — visualizations (histogram, heatmap, PCA scatter)
 
 ##  Sample Outputs
 
